@@ -7,8 +7,12 @@ def main():
     pygame.display.set_caption("Moving Smile")
     screen = pygame.display.set_mode((640, 480))
 
+eye_y=0
+eye_x = 0
+clock = pygame.time.Clock()
     while True:
         # TODO 4: Set the clock speed to 60 fps
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -32,11 +36,11 @@ def main():
         # TODO 1: Draw a nose
         # Suggestion: color (80,0,0) location (320,245), radius 10
         # API --> pygame.draw.circle(screen, (r,g,b), (x, y), radius, thickness)
-
+        pygame.draw.circle(screen, (80, 0, 0), (320, 245), 10)
         # TODO 2: Draw a mouth
         # Suggestion: color (0,0,0), x 230, y 320, width 180, height 30
         # API --> pygame.draw.rect(screen, (r,g,b), (x, y, width, height), thickness)
-
+        pygame.draw.rect(screen, (0,0,0), (230, 320, 180, 30), 10)
         pygame.display.update()
 
 
