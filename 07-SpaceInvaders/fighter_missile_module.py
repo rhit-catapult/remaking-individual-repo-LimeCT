@@ -27,9 +27,14 @@ class Missile:
 class Fighter:
     def __init__(self, screen):
         # Store the screen to an instance variable.
+        self.screen = screen
         # Load the file  "fighter.png"  as the image
+        self.image = pygame.image.load("fighter.png")
+        self.image.set_colorkey((255, 255, 255))
         # Set the x instance variable as the screen width / 2 - image width / 2
+        self.x = x
         # Set the y instance variable as the screen height - image height
+        self.y = y
         # Already done   self.missiles   to the empty list. 
         # Set the colorkey to white (it has a white background that needs removed) using the method set_colorkey
         self.missiles = []
@@ -38,15 +43,22 @@ class Fighter:
         # Move this Fighter by the move_amount_x
         #   Limit the range from -self.image.get_width() / 2 to
         #                        self.screen.get_width() - self.image.get_width() / 2
+        left_bound = 0 - self.image.get_width() / 2
+        right bound = self.screen.get_width() - self.image.get_width() / 2
+        if self.x < left_bound:
         pass
 
     def draw(self):
         # Draw this Fighter, using its image at its current (x, y) position.
+
         pass
 
     def fire(self):
+
         # Construct a new Missile self.image.get_width() / 2 pixels to the right of this Fighter's x position.
         # Append that Missile to this Fighter's list of Missile objects.
+        new_missile = Missile(self.screen, self.x, (self.x,self.y))
+        self.missiles.append(new_missile)
         pass
 
     def remove_exploded_missiles(self):
@@ -62,7 +74,7 @@ def main():
     pygame.display.set_caption("Testing the Fighter and Missiles only")
     screen = pygame.display.set_mode((640, 650))
 
-    fighter = Fighter(screen)
+    fighter = Fighter(screen, screen.get_width() // 2,.get_height() - 150)
 
     while True:
         clock.tick(60)
